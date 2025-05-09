@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Poll-it
 
-## Getting Started
+**Poll-it** is a modern web-based polling platform that lets users create polls, vote on options, and interact through an intuitive upvote/downvote system — inspired by Reddit. Built using powerful tools like **Next.js**, **React**, and **Clerk**, it delivers a fast, responsive, and secure experience with Optimistic UI updates for seamless interaction.
 
-First, run the development server:
+## ✨ Features
+
+- 🗳️ Create and vote on public polls
+- ⬆️⬇️ Upvote or downvote poll options like Reddit
+- ⚡ Optimistic UI for real-time feedback
+- 🔐 Authentication via Clerk
+- 💅 Beautiful UI with TailwindCSS and ShadCN UI
+- 🚀 Built using Next.js App Router and PostgreSQL
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Next.js (App Router), TailwindCSS, ShadCN UI
+- **Backend**: Hono (Edge-ready framework), PostgreSQL
+- **Authentication**: Clerk
+- **UI Strategy**: Optimistic UI
+
+## 📦 Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/agambagish/poll-it.git
+cd poll-it
+pnpm i
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Rename the `.env.example` file to `.env` and fill credentials before running the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Live Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> https://poll-it-agam.vercel.app
 
-## Learn More
+## 📄 License
 
-To learn more about Next.js, take a look at the following resources:
+MIT
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🙌 Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contributions, issues, and feature requests are welcome!
+Feel free to open a pull request or start a discussion.
 
-## Deploy on Vercel
+## 📌 Keywords
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+polling platform, create polls, voting app, reddit-style polls, upvote downvote system, optimistic UI, next.js app, react poll app, clerk auth, tailwindcss, shadcn UI, modern web app
