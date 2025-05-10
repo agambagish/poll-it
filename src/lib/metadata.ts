@@ -21,16 +21,16 @@ export const metadata: Metadata = {
   ],
   creator: "Akash",
   publisher: "Poll-it",
-  metadataBase: new URL("https://poll-it-agam.vercel.app"),
+  metadataBase: new URL("https://poll-it-zeta.vercel.app"),
   openGraph: {
     title: "Poll-it | Create & Vote on Polls Instantly",
     description:
       "Join Poll-it and discover the easiest way to create, vote, and engage in trending polls. Built with Next.js, TailwindCSS, and Clerk.",
-    url: "https://poll-it-agam.vercel.app",
+    url: "https://poll-it-zeta.vercel.app",
     siteName: "Poll-it",
     images: [
       {
-        url: "https://poll-it-agam.vercel.app/opengraph-image.png",
+        url: "https://poll-it-zeta.vercel.app/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "Poll-it - Create & Vote on Polls",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "Poll-it is your go-to platform to create polls and engage in real-time with upvotes and downvotes. Fast, secure, and social.",
     site: "@MacherJholBhaat",
     creator: "@MacherJholBhaat",
-    images: ["https://poll-it-agam.vercel.app/opengraph-image.png"],
+    images: ["https://poll-it-zeta.vercel.app/opengraph-image.png"],
   },
   icons: {
     icon: "/icon.png",

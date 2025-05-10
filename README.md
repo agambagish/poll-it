@@ -31,7 +31,7 @@ pnpm dev
 
 ## 🌐 Live Demo
 
-> https://poll-it-agam.vercel.app
+> https://poll-it-zeta.vercel.app
 
 ## 📄 License
 
