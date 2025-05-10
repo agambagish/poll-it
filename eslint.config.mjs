@@ -10,7 +10,7 @@ export default antfu({
     semi: true,
     quotes: "double",
   },
-  ignores: [".pnpm-store/*", "src/components/ui/*"],
+  ignores: [".pnpm-store/*", "src/components/ui/*", "drizzle/*"],
 }, {
   rules: {
     "ts/no-redeclare": "off",
