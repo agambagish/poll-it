@@ -4,10 +4,10 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Jost } from "next/font/google";
 
 import { metadata as _metadata } from "@/lib/metadata";
+import { cn } from "@/lib/utils";
+import { Providers } from "@/providers";
 
 import "./globals.css";
-
-import { cn } from "@/lib/utils";
 
 const font = Jost({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
           className={cn("antialiased", font.className)}
           suppressHydrationWarning
         >
-          {children}
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ClerkProvider>
