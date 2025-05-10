@@ -15,12 +15,14 @@
     "db:migrate": "tsx src/db/migrate.ts"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.19.2",
     "@radix-ui/react-slot": "^1.2.2",
     "@t3-oss/env-nextjs": "^0.13.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.43.1",
+    "hono": "^4.7.9",
     "lucide-react": "^0.509.0",
     "next": "15.3.2",
     "pg": "^8.15.6",
@@ -54,7 +56,13 @@
     "allowedDeprecatedVersions": {
       "@esbuild-kit/core-utils": "3.3.2",
       "@esbuild-kit/esm-loader": "2.6.5"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@clerk/shared",
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ]
   },
   "lint-staged": {
     "*": "pnpm lint"
