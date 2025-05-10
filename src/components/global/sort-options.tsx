@@ -52,7 +52,7 @@ export function SortOptions() {
           )}
         >
           {option.icon}
-          <span className="ml-2">{option.label}</span>
+          <span>{option.label}</span>
         </Button>
       ))}
     </div>

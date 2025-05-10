@@ -7,3 +7,5 @@ export type PollField = (Omit<Poll, "createdAt" | "userId"> & {
   createdAt: string;
   options: OptionField[];
 });
+
+export type SortOption = "trending" | "most-voted" | "recent";

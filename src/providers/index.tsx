@@ -1,5 +1,6 @@
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
+import { QueryProvider } from "@/providers/query-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 export function Providers({ children }: React.PropsWithChildren) {
@@ -11,7 +12,9 @@ export function Providers({ children }: React.PropsWithChildren) {
       disableTransitionOnChange
     >
       <NuqsAdapter>
-        {children}
+        <QueryProvider>
+          {children}
+        </QueryProvider>
       </NuqsAdapter>
     </ThemeProvider>
   );

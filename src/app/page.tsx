@@ -1,25 +1,8 @@
-import type { SearchParams } from "nuqs/server";
+import { Suspense } from "react";
 
 import { PollList } from "@/components/global/poll-list";
-import { client } from "@/lib/hono";
-import { getSearchParams } from "@/lib/search-params-parser";
 
-interface Props {
-  searchParams: Promise<SearchParams>;
-}
-
-export default async function Page({ searchParams }: Props) {
-  const _searchParams = await searchParams;
-  const { sort } = await getSearchParams(_searchParams);
-
-  const apiRes = await client.api.polls.$get({
-    query: {
-      sort,
-    },
-  });
-
-  const polls = await apiRes.json();
-
+export default function Page() {
   return (
     <main className="container mx-auto py-8 px-4 max-w-7xl">
       <section className="mb-12 text-center">
@@ -31,7 +14,9 @@ export default async function Page({ searchParams }: Props) {
           Create polls and see results in real-time with our Reddit-style voting platform
         </p>
       </section>
-      <PollList polls={polls} />
+      <Suspense>
+        <PollList />
+      </Suspense>
     </main>
   );
 }
