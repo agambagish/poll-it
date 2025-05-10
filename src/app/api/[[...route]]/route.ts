@@ -1,15 +1,13 @@
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
 
-export const runtime = "edge";
+import polls from "./polls";
 
-const app = new Hono().basePath("/api");
+const app = new Hono()
+  .basePath("/api")
+  .route("/polls", polls);
 
-app.get("/hello", (c) => {
-  return c.json({
-    message: "Hello Next.js!",
-  });
-});
+export type AppType = typeof app;
 
 export const GET = handle(app);
 export const POST = handle(app);
