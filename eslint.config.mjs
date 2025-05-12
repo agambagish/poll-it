@@ -20,6 +20,7 @@ export default antfu({
     "node/prefer-global/process": ["off"],
     "node/no-process-env": ["error"],
     "require-await": ["warn"],
+    "react-hooks-extra/no-direct-set-state-in-use-effect": ["off"],
     "perfectionist/sort-imports": ["error", {
       tsconfigRootDir: ".",
     }],

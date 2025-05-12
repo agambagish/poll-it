@@ -8,6 +8,13 @@
       "when": 1746863320616,
       "tag": "0000_legal_kid_colt",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1747049055505,
+      "tag": "0001_wooden_magus",
+      "breakpoints": true
     }
   ]
 }

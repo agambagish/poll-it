@@ -41,7 +41,7 @@ export const votes = pgTable(
     type: voteTypeEnum().notNull(),
   },
   table => ({
-    oneVotePerUserPerPoll: uniqueIndex().on(table.userId, table.pollId),
+    oneVotePerUserPerOption: uniqueIndex().on(table.userId, table.optionId),
   }),
 );
 

@@ -32,7 +32,7 @@ export function PollCard({ poll }: Props) {
   const timeAgo = formatDistanceToNow(new Date(poll.createdAt), { addSuffix: true });
 
   return (
-    <Link href={`/polls/${poll.id}`}>
+    <Link href={`/p/${poll.id}`}>
       <Card
         className={cn(
           "transition-all duration-200 h-full cursor-pointer",

@@ -8,6 +8,11 @@ export const optionVotes = db.select({
   label: options.label,
   pollId: options.pollId,
   voteCount: count(votes.id).as("vote_count"),
+  upvoteCount: sql<number>`coalesce(count(*) filter (where ${votes.type} = 'up'), 0)`.as("upvote_count"),
+  downvoteCount: sql<number>`coalesce(count(*) filter (where ${votes.type} = 'down'), 0)`.as("downvote_count"),
+  isUpvoted: sql<boolean>`bool_or(${votes.userId} = ${sql.placeholder("userId")} and ${votes.type} = 'up')`.as("is_upvoted"),
+  isDownvoted: sql<boolean>`bool_or(${votes.userId} = ${sql.placeholder("userId")} and ${votes.type} = 'down')`.as("is_downvoted"),
+
 })
   .from(options)
   .leftJoin(votes, eq(options.id, votes.optionId))
