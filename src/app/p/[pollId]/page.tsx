@@ -118,7 +118,7 @@ export default function Page() {
             <PollOptionCard
               key={option.id}
               option={option}
-              disabled={/* isVoting */ false}
+              pollId={poll.id}
             />
           ))}
         </div>

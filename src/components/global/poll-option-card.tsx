@@ -1,5 +1,6 @@
 "use client";
 
+import { useMutation } from "@tanstack/react-query";
 import { EllipsisVerticalIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -7,15 +8,18 @@ import type { OptionField } from "@/lib/types";
 
 import { UpvoteDownvote } from "@/components/global/upvote-downvote";
 import { Button } from "@/components/ui/button";
+import { client } from "@/lib/hono";
 import { cn } from "@/lib/utils";
 
 interface Props {
   option: OptionField;
+  pollId: number;
   disabled?: boolean;
 }
 
 export function PollOptionCard({
   option,
+  pollId,
   disabled,
 }: Props) {
   const [isHovering, setIsHovering] = useState<boolean>(false);
@@ -37,6 +41,29 @@ export function PollOptionCard({
     option.upvoted,
     option.upvotes,
   ]);
+
+  const { mutate } = useMutation({
+    mutationFn: client.api.votes.$put,
+  });
+
+  function handleVoteChange(state: {
+    upvotes: number;
+    downvotes: number;
+    upvoted: boolean;
+    downvoted: boolean;
+  }) {
+    setUpvotes(state.upvotes);
+    setUpvoted(state.upvoted);
+    setDownvotes(state.downvotes);
+    setDownvoted(state.downvoted);
+    mutate({
+      json: {
+        optionId: option.id,
+        pollId,
+        type: state.upvoted ? "up" : "down",
+      },
+    });
+  }
 
   return (
     <div
@@ -64,12 +91,7 @@ export function PollOptionCard({
           downvotes={downvotes}
           upvoted={upvoted}
           downvoted={downvoted}
-          onVoteChange={(state) => {
-            setUpvotes(state.upvotes);
-            setUpvoted(state.upvoted);
-            setDownvotes(state.downvotes);
-            setDownvoted(state.downvoted);
-          }}
+          onVoteChange={handleVoteChange}
         />
       </div>
     </div>

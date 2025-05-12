@@ -1,3 +1,4 @@
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import NumberFlow from "@number-flow/react";
 import { ArrowBigDownIcon, ArrowBigUpIcon } from "lucide-react";
 
@@ -30,7 +31,13 @@ export function UpvoteDownvote({
   upvoteIncrement = 1,
   upvotes,
 }: Props) {
+  const { isSignedIn } = useAuth();
+
   const handleUpvote = () => {
+    if (!isSignedIn) {
+      return;
+    }
+
     if (upvoted) {
       onVoteChange({
         downvoted: false,
@@ -50,6 +57,10 @@ export function UpvoteDownvote({
   };
 
   const handleDownvote = () => {
+    if (!isSignedIn) {
+      return;
+    }
+
     if (downvoted) {
       onVoteChange({
         downvoted: false,
@@ -83,10 +94,21 @@ export function UpvoteDownvote({
         onClick={handleUpvote}
         className="cursor-pointer rounded-full p-1 hover:bg-zinc-800/30"
       >
-        <ArrowBigUpIcon
-          size={24}
-          className={cn("text-white", upvoted && "fill-white")}
-        />
+        {isSignedIn
+          ? (
+              <ArrowBigUpIcon
+                size={24}
+                className={cn("text-white", upvoted && "fill-white")}
+              />
+            )
+          : (
+              <SignInButton mode="modal">
+                <ArrowBigUpIcon
+                  size={24}
+                  className="text-white"
+                />
+              </SignInButton>
+            )}
       </button>
       <span className="min-w-8 p-1 text-center text-white">
         <NumberFlow
@@ -100,10 +122,21 @@ export function UpvoteDownvote({
         onClick={handleDownvote}
         className="cursor-pointer rounded-full p-1 hover:bg-zinc-800/30"
       >
-        <ArrowBigDownIcon
-          size={24}
-          className={cn("text-white", downvoted && "fill-white")}
-        />
+        {isSignedIn
+          ? (
+              <ArrowBigDownIcon
+                size={24}
+                className={cn("text-white", downvoted && "fill-white")}
+              />
+            )
+          : (
+              <SignInButton mode="modal">
+                <ArrowBigDownIcon
+                  size={24}
+                  className="text-white"
+                />
+              </SignInButton>
+            )}
       </button>
     </div>
   );

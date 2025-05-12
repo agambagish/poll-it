@@ -1,3 +1,4 @@
+import { UserButton } from "@clerk/nextjs";
 import { Suspense } from "react";
 
 import { PollList } from "@/components/global/poll-list";
@@ -5,6 +6,7 @@ import { PollList } from "@/components/global/poll-list";
 export default function Page() {
   return (
     <main className="container mx-auto py-8 px-4 max-w-7xl">
+      <UserButton />
       <section className="mb-12 text-center">
         <h1 className="text-4xl font-bold mb-4 tracking-tight">
           <span className="text-primary">Poll-</span>
