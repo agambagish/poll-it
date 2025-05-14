@@ -1,16 +1,8 @@
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs";
-import { ChartColumnBigIcon, Loader2Icon, UserCircle2Icon } from "lucide-react";
+import { ChartColumnBigIcon } from "lucide-react";
 import Link from "next/link";
 
+import { AuthButton } from "@/components/global/auth-button";
 import { GithubBadge } from "@/components/global/github-badge";
-import { Button } from "@/components/ui/button";
 
 export function Header() {
   return (
@@ -26,25 +18,7 @@ export function Header() {
           <GithubBadge />
         </div>
         <nav>
-          <ClerkLoading>
-            <Button variant="secondary" size="icon">
-              <Loader2Icon className="animate-spin text-muted-foreground" />
-            </Button>
-          </ClerkLoading>
-          <ClerkLoaded>
-            <SignedIn>
-              <Button variant="secondary" size="icon">
-                <UserButton />
-              </Button>
-            </SignedIn>
-            <SignedOut>
-              <SignInButton mode="modal">
-                <Button variant="secondary" size="icon">
-                  <UserCircle2Icon />
-                </Button>
-              </SignInButton>
-            </SignedOut>
-          </ClerkLoaded>
+          <AuthButton />
         </nav>
       </div>
     </header>

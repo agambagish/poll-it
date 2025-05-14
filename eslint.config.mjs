@@ -21,6 +21,7 @@ export default antfu({
     "node/no-process-env": ["error"],
     "require-await": ["warn"],
     "react-hooks-extra/no-direct-set-state-in-use-effect": ["off"],
+    "react/no-array-index-key": ["off"],
     "perfectionist/sort-imports": ["error", {
       tsconfigRootDir: ".",
     }],

@@ -1,21 +1,16 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { useQueryStates } from "nuqs";
 
 import { PollCard } from "@/components/global/poll-card";
 import { SearchBar } from "@/components/global/search-bar";
 import { SortOptions } from "@/components/global/sort-options";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useHomepageParams } from "@/hooks/use-homepage-params";
 import { client } from "@/lib/hono";
-import { searchParamsParser } from "@/lib/search-params-parser";
 
 export function PollList() {
-  const [{ sort }] = useQueryStates(searchParamsParser, {
-    urlKeys: {
-      sort: "s",
-    },
-  });
+  const { sort } = useHomepageParams();
 
   const { data: polls, isLoading } = useQuery({
     queryKey: ["polls", sort],

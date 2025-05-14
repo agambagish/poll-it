@@ -9,8 +9,9 @@ import { fromError } from "zod-validation-error";
 import type { OptionField } from "@/lib/types";
 
 import { db } from "@/db";
-import { polls, votes } from "@/db/schema";
+import { options, polls, votes } from "@/db/schema";
 import { optionVotes, orderByMap } from "@/db/utils";
+import { pollSchema } from "@/lib/poll-schema";
 import { tryCatch } from "@/lib/try-catch";
 
 const app = new Hono()
@@ -101,6 +102,63 @@ const app = new Hono()
     }
 
     return c.json({ ...data[0] });
-  });
+  })
+  .post(
+    "/",
+    clerkMiddleware(),
+    zValidator(
+      "json",
+      pollSchema,
+      (res, c) => {
+        if (!res.success) {
+          return c.json({
+            message: fromError(res.error).toString(),
+          }, StatusCodes.UNPROCESSABLE_ENTITY);
+        }
+      },
+    ),
+    async (c) => {
+      const values = c.req.valid("json");
+      const auth = getAuth(c);
+
+      if (!auth?.userId) {
+        return c.json({
+          message: ReasonPhrases.UNAUTHORIZED,
+        }, StatusCodes.UNAUTHORIZED);
+      }
+
+      const { data, error } = await tryCatch(
+        db.transaction(async (tx) => {
+          const [createdPoll] = await tx
+            .insert(polls)
+            .values({
+              question: values.question,
+              userId: auth.userId,
+            })
+            .returning({ id: polls.id });
+
+          await tx
+            .insert(options)
+            .values(
+              values.options.map(label => ({
+                label,
+                pollId: createdPoll.id,
+              })),
+            )
+            .returning();
+
+          return createdPoll.id;
+        }),
+      );
+
+      if (error) {
+        return c.json({
+          message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+        }, StatusCodes.INTERNAL_SERVER_ERROR);
+      }
+
+      return c.json({ pollId: data });
+    },
+  );
 
 export default app;

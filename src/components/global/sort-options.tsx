@@ -1,10 +1,9 @@
 "use client";
 
 import { ArrowUpDownIcon, BarChartIcon, ClockIcon } from "lucide-react";
-import { useQueryStates } from "nuqs";
 
 import { Button } from "@/components/ui/button";
-import { searchParamsParser } from "@/lib/search-params-parser";
+import { useHomepageParams } from "@/hooks/use-homepage-params";
 import { cn } from "@/lib/utils";
 
 export function SortOptions() {
@@ -30,11 +29,7 @@ export function SortOptions() {
     },
   ];
 
-  const [{ sort }, setValue] = useQueryStates(searchParamsParser, {
-    urlKeys: {
-      sort: "s",
-    },
-  });
+  const { sort, setParams } = useHomepageParams();
 
   return (
     <div className="flex flex-wrap gap-2">
@@ -43,7 +38,7 @@ export function SortOptions() {
           key={option.value}
           variant={sort === option.value ? "default" : "outline"}
           size="sm"
-          onClick={() => setValue({ sort: option.value })}
+          onClick={() => setParams({ sort: option.value })}
           className={cn(
             "transition-all",
             sort === option.value

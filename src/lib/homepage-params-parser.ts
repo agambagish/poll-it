@@ -1,6 +1,6 @@
 import { createLoader, parseAsStringEnum } from "nuqs/server";
 
-export const searchParamsParser = {
+export const homepageParamsParser = {
   sort: parseAsStringEnum(["trending", "most-voted", "recent"])
     .withDefault("trending")
     .withOptions({
@@ -8,7 +8,7 @@ export const searchParamsParser = {
     }),
 };
 
-export const getSearchParams = createLoader(searchParamsParser, {
+export const getHomepageParams = createLoader(homepageParamsParser, {
   urlKeys: {
     sort: "s",
   },

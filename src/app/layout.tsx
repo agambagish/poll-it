@@ -4,12 +4,12 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Jost } from "next/font/google";
 
 import { Header } from "@/components/global/header";
+import { Toaster } from "@/components/ui/sonner";
 import { metadata as _metadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
+import { Providers } from "@/providers";
 
 import "./globals.css";
-
-import { Providers } from "@/providers";
 
 const font = Jost({ subsets: ["latin"] });
 
@@ -28,6 +28,10 @@ export default function Layout({ children }: React.PropsWithChildren) {
           <Providers>
             <Header />
             {children}
+            <Toaster
+              richColors
+              toastOptions={{ className: font.className }}
+            />
           </Providers>
         </body>
       </html>
