@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { AuthButton } from "@/components/global/auth-button";
 import { GithubBadge } from "@/components/global/github-badge";
+import { ModeToggle } from "@/components/global/mode-toggle";
 
 export function Header() {
   return (
@@ -17,8 +18,9 @@ export function Header() {
           </Link>
           <GithubBadge />
         </div>
-        <nav>
+        <nav className="flex space-x-2">
           <AuthButton />
+          <ModeToggle />
         </nav>
       </div>
     </header>
